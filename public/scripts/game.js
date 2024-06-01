@@ -98,11 +98,11 @@ const getPieceUnicode = (piece) => {
 const printRole = (role) => {
     console.log(role);
     if (role === "w") {
-        roleName.innerHTML = "White Player View";
+        roleName.innerHTML = "White Player's View";
     } else if (role === "b") {
-        roleName.innerHTML = "Black Player View";
+        roleName.innerHTML = "Black Player's View";
     } else {
-        roleName.innerHTML = "Spectator Watching";
+        roleName.innerHTML = "Spectator's Watch";
     }
 }
 
