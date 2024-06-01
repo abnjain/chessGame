@@ -1,0 +1,7 @@
+important things to define in development/debugging time
+
+
+using powershell --> $env:DEBUG="development:chessGame"; $env:GAMEPORT="3020"; nodemon start
+using cmd --> set DEBUG=development:chessGame; set GAMEPORT=3020; nodemon start
+GAMEPORT
+development environment 

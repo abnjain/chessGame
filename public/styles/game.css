@@ -3,12 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
-.main {
+body {
+    background-color: #000;
+    color: #fff;
     display: grid;
+    justify-content: center;
     align-items: center;
-    justify-items: center;
-    height: 100vh;
+    height: 100vh; /* Make sure the body takes up the full viewport height */
+    margin: 0; /* Remove default margin */
 }
+
+.main{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .chessBoard {
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));

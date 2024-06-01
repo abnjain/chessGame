@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-    res.render("index", {title: "CHESS Game"});
+    res.render("index", { title: "CHESS Game" });
 });
 
 io.on("connection", (uniqueSocket) => {
@@ -28,12 +28,12 @@ io.on("connection", (uniqueSocket) => {
 
     if(!players.white) {
         players.white = uniqueSocket.id;
-        uniqueSocket.emit("playerRole", "W");
+        uniqueSocket.emit("playerRole", "w");
     } else if (!players.black) {
         players.black = uniqueSocket.id;
-        uniqueSocket.emit("playerRole", "B");
+        uniqueSocket.emit("playerRole", "b");
     } else {
-        uniqueSocket.emit("spectatorRole");
+        uniqueSocket.emit("spectatorRole", "s");
     }
 
     uniqueSocket.on("disconnect", () => {
@@ -50,8 +50,8 @@ io.on("connection", (uniqueSocket) => {
 
     uniqueSocket.on("move", (move) => {
         try {
-            if (chess.turn() === "w" && uniqueSocket !== players.white) return
-            if (chess.turn() === "b" && uniqueSocket !== players.black) return
+            if (chess.turn() === "w" && uniqueSocket.id !== players.white) return
+            if (chess.turn() === "b" && uniqueSocket.id !== players.black) return
 
             const result = chess.move(move);
             if (result) {
@@ -67,9 +67,9 @@ io.on("connection", (uniqueSocket) => {
             uniqueSocket.emit("Invalid Move :", move);
         }
     });
-})
-// console.log(process.env.NODE_ENV);
-// console.log(process.env.GAMEPORT);
+});
+// dbgr(process.env.NODE_ENV);
+// dbgr(process.env.GAMEPORT);
 server.listen(process.env.GAMEPORT, () => {
     dbgr(`Server is running on port ${config.GAME_URI}${process.env.GAMEPORT}`);
 })
