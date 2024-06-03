@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const tokenBlacklist = require("../models/tokenBlacklist");
+const config = require("../config/development.json");
 
 module.exports = async (req, res, next) => {
     const authHeader = req.header("Authorization");
@@ -18,7 +19,7 @@ module.exports = async (req, res, next) => {
     }
 
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, config.JWT_SECRET);
       const user = await User.findOne({ _id: decoded.id });
 
       if (!user) {

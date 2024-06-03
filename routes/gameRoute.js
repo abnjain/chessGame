@@ -1,9 +1,9 @@
 //gameRoute.js
 const express = require("express");
 const router = express.Router();
-const { gameSocket } = require ("../controllers/gameController")
+const authenticateToken = require("../middlewares/authenticateToken");
 
-router.get ("/", (req, res) => {
+router.get("/", authenticateToken, (req, res) => {
     res.render("game", { title: "CHESS Game" });
 });
 

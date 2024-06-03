@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+// const config = require("./development.json")
 const dbgr = require("debug")("development:chessGame/db");
 
 const connectDB = async () => {

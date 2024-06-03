@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | CHESS Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black">
+    <div class="flex flex-col items-center justify-center h-screen p-10">
+        <form action="/auth/register" method="POST" class="bg-gray-800 py-8 px-10 w-96 rounded shadow-md flex items-center justify-center flex-col text-black">
+            <h2 class="text-2xl mb-4 text-white">Register</h2>
+            <input type="text" name="userName" placeholder="Username" required class="mb-4 text-center py-2 w-full rounded">
+            <input type="text" name="firstName" placeholder="First Name" required class="mb-4 text-center py-2 w-full rounded">
+            <input type="text" name="lastName" placeholder="Last Name" required class="mb-4 text-center py-2 w-full rounded">
+            <input type="file" name="userImage" placeholder="User Image URL" class="mb-4 text-center py-2 w-full rounded">
+            <input type="date" name="dob" placeholder="Date of Birth (YYYY-MM-DD)" class="mb-4 text-center py-2 w-full rounded">
+            <input type="email" name="email" placeholder="Email" required class="mb-4 text-center py-2 w-full rounded">
+            <input type="password" name="password" placeholder="Password" required class="mb-4 text-center py-2 w-full rounded">
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold mt-6 py-2 px-4 text-center rounded focus:outline-none focus:shadow-outline">Register</button>
+        </form>
+        <p class="p-2 text-white">Already Registered? Login Instead</p>
+        <div class="flex justify-center gap-4 mt-3">
+            <a href="/login" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 text-center rounded focus:outline-none focus:shadow-outline">Login</a>
+            <p class="text-xl text-white">OR</p>
+            <a href="/login" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 text-center rounded focus:outline-none focus:shadow-outline">Google Login</a>
+        </div>
+    </div>
+</body>
+</html>
