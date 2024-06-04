@@ -33,6 +33,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  refreshToken: {
+    type: String
+  },
   isLoggedIn: { type: Boolean, default: false },   
 }, { timestamps: true });
 

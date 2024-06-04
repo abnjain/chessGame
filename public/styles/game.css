@@ -5,11 +5,27 @@ body {
     display: grid;
     justify-content: center;
     align-items: center;
+    width: 100vw;
     height: 100vh; /* Make sure the body takes up the full viewport height */
     margin: 0; /* Remove default margin */
 }
 
+.logout button {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: x-large;
+    background: #000;
+}
+.logout button:hover{
+    text-decoration: underline;
+    scale: 125%;
+}
+
 .main{
+    margin-top: -100px;
     display: grid;
     justify-content: center;
     align-items: center;
@@ -18,11 +34,21 @@ body {
 
 p{
     font-size: x-large;
-    margin-top: 0%;
 }
 
+.roleName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 5px;
+}
+.roleName span {
+    font-size: medium;
+    font-weight: 700;
+}
 .roleName p{
-    font-size: small;
+    font-size: medium;
 }
 
 .chessBoard {

@@ -22,10 +22,11 @@ module.exports = {
       user = new User({ userName, firstName, lastName, userImage, dob, age, email, password });
       await user.save();
 
-      const token = jwt.sign({ id: user._id }, config.JWT_SECRET, { expiresIn: "1h" });
+      const accessToken = jwt.sign({ id: user._id }, config.JWT_SECRET, { expiresIn: '15m' });
+      const refreshToken = jwt.sign({ id: user._id }, config.JWT_REFRESH_SECRET, { expiresIn: '7d' });
 
       dbgr(`User registered: ${user.email}`);
-      res.status(201).json({ token, msg: "User Registered" });
+      res.status(201).json({ token: accessToken, refreshToken, msg: "User Registered" });
     } catch (error) {
       console.error("Error during registration:", error.message, error);
       res.status(500).json({ error: "Internal Server Error" });
@@ -55,13 +56,28 @@ module.exports = {
       if (!isMatch) {
         return res.status(400).json({ error: "Invalid credentials" });
       }
-
-      const token = jwt.sign({ id: user._id }, config.JWT_SECRET, { expiresIn: "1h" });
-      user.isLoggedIn = true;
+      let accessToken, refreshToken;
+      // await tokenBlacklist.deleteMany({ userId: user._id });
+      if (accessToken && refreshToken) {
+        res.status(400).render("login")
+      } else (
+        accessToken = jwt.sign({ id: user._id }, config.JWT_SECRET, { expiresIn: '15m' })
+      )
+      refreshToken = jwt.sign({ id: user._id }, config.JWT_REFRESH_SECRET, { expiresIn: '7d' });
+      
+      user.refreshToken = refreshToken;
       await user.save();
+      if (!user.isLoggedIn || !refreshToken  ) {
+        user.isLoggedIn = true;
+        await user.save();
+      } else {
+        res.status(400).render("login")
+        return new Error ("Logout First");
+      }
       dbgr(`User logged in: ${user.email}`);
-      res.cookie("token", token, { httpOnly: true });
-      return res.redirect("/game");
+      res.cookie('token', accessToken, { httpOnly: true });
+      res.cookie('refreshToken', refreshToken, { httpOnly: true });
+      return res.render("game", { userName: user.userName });
     } catch (error) {
       console.error("Error during login:", error.message, error);
       res.status(500).json({ error: "Internal Server Error" });
@@ -69,21 +85,37 @@ module.exports = {
   },
 
   logout: async (req, res) => {
-    try {
-      // Clear the authentication token from cookies
-      res.clearCookie("token");
-
-      // Log the user out by setting isLoggedIn to false
-      const user = await User.findById(req.user.id);
-      if (user) {
+      const accessToken = req.cookies.token;
+      const refreshToken = req.cookies.refreshToken;
+  
+      try {
+          // Decode the access token to get the user's ID
+          const decoded = jwt.verify(accessToken, config.JWT_SECRET);
+          const userId = decoded.id;
+  
+          // Find the user in the database using the ID
+          const user = await User.findById(userId);
+          if (!user) {
+              return res.status(400).json({ error: "User not found" });
+          }
+  
+          // Set isLoggedIn to false and save the user
           user.isLoggedIn = false;
           await user.save();
+  
+          // Blacklist the access token
+          await tokenBlacklist.create({ token: accessToken });
+  
+          dbgr(`User logged out: ${user.email}`);
+  
+          // Clear cookies
+          res.clearCookie('token');
+          res.clearCookie('refreshToken');
+          
+          return res.status(200).redirect("/login");
+      } catch (error) {
+          console.error("Error during logout:", error.message, error);
+          res.status(500).json({ error: "Internal Server Error" });
       }
-      dbgr(`User logged out: ${req.user.userName}`);
-      return res.status(200).json({ msg: "User logged out successfully" });
-  } catch (error) {
-      console.error("Error during logout:", error.message, error);
-      return res.status(500).json({ error: "Internal Server Error" });
-  }
   }
 };
