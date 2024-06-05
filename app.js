@@ -45,6 +45,6 @@ app.use("/game", gameRouter);
 
 // dbgr(process.env.NODE_ENV);
 // dbgr(process.env.GAMEPORT);
-server.listen(process.env.GAMEPORT, () => {
-    dbgr(`Server is running on port http://localhost:${process.env.GAMEPORT}`);
+server.listen(process.env.PORT, () => {
+    dbgr(`Server is running on port http://localhost:${process.env.PORT}`);
 });
