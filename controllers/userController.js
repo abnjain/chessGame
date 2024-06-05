@@ -22,11 +22,8 @@ module.exports = {
       user = new User({ userName, firstName, lastName, userImage, dob, age, email, password });
       await user.save();
 
-      const accessToken = jwt.sign({ id: user._id }, config.JWT_SECRET, { expiresIn: '15m' });
-      const refreshToken = jwt.sign({ id: user._id }, config.JWT_REFRESH_SECRET, { expiresIn: '7d' });
-
       dbgr(`User registered: ${user.email}`);
-      res.status(201).json({ token: accessToken, refreshToken, msg: "User Registered" });
+      res.status(201).render("login");
     } catch (error) {
       console.error("Error during registration:", error.message, error);
       res.status(500).json({ error: "Internal Server Error" });

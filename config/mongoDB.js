@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-// const config = require("./development.json")
+const config = require("./development.json")
 const dbgr = require("debug")("development:chessGame/db");
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(`${process.env.MONGO_URI}/chessGame`, {
+        await mongoose.connect(`${config.MONGO_URI}/chessGame`, {
             // useNewUrlParser: true,
             // useUnifiedTopology: true,
         });
