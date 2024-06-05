@@ -4,7 +4,7 @@ const dbgr = require("debug")("development:chessGame/db");
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(`${config.MONGO_URI}/chessGame`, {
+        await mongoose.connect(`mongodb://127.0.0.1:27017/chessGame`, {
             // useNewUrlParser: true,
             // useUnifiedTopology: true,
         });
