@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess Game</title>
+    <link rel="icon" href="/images/Untitled_design-removebg-preview(1).png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-black text-white">
-    <h1 class="text-4xl font-bold my-16 text-center">Abnjain's Chess Game</h1>
-    <div class="flex items-center justify-center h-screen gap-6">
+<body class="bg-black text-white h-screen overflow-hidden">
+    <h1 class="text-4xl font-bold mt-16 text-center">Abnjain's Chess Game</h1>
+    <div class="flex justify-center items-center">
+        <img src="/images/Untitled_design-removebg-preview.png" alt="Chess Pieces">
+    </div>
+    <div class="flex items-center justify-center gap-6">
         <div class="text-center">
             <a href="/register" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</a>
         </div>
         <div class="text-center">
-            <a href="<%= process.env.GAME_URI %><%= process.env.GAMEPORT %>/login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</a>
+            <a href="/login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</a>
         </div>
         <div class="text-center">
             <a href="/game" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Start Game</a>
