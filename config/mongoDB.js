@@ -5,8 +5,8 @@ const dbgr = require("debug")("development:chessGame/db");
 const connectDB = async () => {
     try {
         await mongoose.connect(`${process.env.MONGODB_URI}`, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+            // useNewUrlParser: true,
+            // useUnifiedTopology: true,
         });
         dbgr('MongoDB connected');
     } catch (err) {
