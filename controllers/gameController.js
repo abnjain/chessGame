@@ -7,7 +7,7 @@ const chess = new Chess();
 let players = {};
 
 //development phase requirement
-const dbgr = require("debug")("development:chessGame");
+const dbgr = require("debug")("development:chessGame/GAME");
 
 module.exports = {
     gameSocket: (server) => {
@@ -22,7 +22,7 @@ module.exports = {
                 players.black = uniqueSocket.id;
                 uniqueSocket.emit("playerRole", "b");
             } else {
-                uniqueSocket.emit("spectatorRole", "s");
+                uniqueSocket.emit("playerRole", "s");
             }
         
             uniqueSocket.on("disconnect", () => {

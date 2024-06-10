@@ -6,9 +6,26 @@
     <title>CHESS Game</title>
     <link rel="icon" href="/images/Untitled_design-removebg-preview(1).png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link href="/styles/styles.css" rel="stylesheet" type="text/tailwindcss"> -->
 </head>
 <body class="bg-black text-white h-screen overflow-hidden">
-    <h1 class="text-4xl font-bold mt-16 text-center">Abnjain's Chess Game</h1>
+    <div class="flashMessage flex justify-center items-center z-50">
+        <% if (messages.error && messages.error.length > 0) { %>
+            <div class="absolute alert alertDanger bg-red-500 text-white p-2 rounded-xl mb-4 text-center w-96 mt-10">
+                <% messages.error.forEach(function(error) { %>
+                    <p><%= error %></p>
+                <% }) %>
+            </div>
+        <% } %>
+        <% if (messages.success && messages.success.length > 0) { %>
+            <div class="absolute alert alertSuccess bg-green-500 text-white p-2 rounded-xl mb-4 text-center w-96 mt-10">
+                <% messages.success.forEach(function(success) { %>
+                    <p><%= success %></p>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+    <h1 class="text-5xl font-bold mt-16 text-center">Abnjain's Chess Game</h1>
     <div class="flex justify-center items-center">
         <img src="/images/Untitled_design-removebg-preview.png" alt="Chess Pieces">
     </div>
@@ -23,5 +40,20 @@
             <a href="/game" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Start Game</a>
         </div>
     </div>
+    <script>
+        const alertSuccess = document.querySelector(".alertSuccess")
+        const alertDanger = document.querySelector(".alertDanger")
+        setTimeout(() => {
+            const flashMessage = document.querySelector('.flashMessage');
+            if (flashMessage) {
+                if (alertSuccess) {
+                    alertSuccess.style.backgroundColor = 'rgba(34, 197, 94, 0.5)';
+                    alertSuccess.style.display = 'none';
+                } else if (alertDanger) {
+                    alertDanger.style.display = 'none';
+                }
+            }
+        }, 10000);
+    </script>
 </body>
 </html>

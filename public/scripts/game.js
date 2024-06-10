@@ -128,3 +128,18 @@ socket.on("move", (move) => {
 });
 
 renderBoard();
+
+// Remove flash messages after 10 seconds
+const alertSuccess = document.querySelector(".alertSuccess")
+const alertDanger = document.querySelector(".alertDanger")
+setTimeout(() => {
+    const flashMessage = document.querySelector('.flashMessage');
+    if (flashMessage) {
+        if (alertSuccess) {
+            alertSuccess.style.backgroundColor = 'rgba(34, 197, 94, 0.5)';
+            alertSuccess.style.display = 'none';
+        } else if (alertDanger) {
+            alertDanger.style.display = 'none';
+        }
+    }
+}, 10000);

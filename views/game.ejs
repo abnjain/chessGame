@@ -5,20 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHESS Game | Play</title>
     <link rel="icon" href="/images/Untitled_design-removebg-preview(1).png" type="image/x-icon">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="/styles/game.css">
 </head>
 <body>
-    <div class="logout">
-        <form action="/auth/logout" method="POST">
-            <button type="submit">Logout</button>
-        </form>
+    <div class="flashMessage flex justify-center items-center z-50">
+        <% if (messages.error && messages.error.length > 0) { %>
+            <div class="alert alertDanger bg-red-500">
+                <% messages.error.forEach(function(error) { %>
+                    <p><%= error %></p>
+                <% }) %>
+            </div>
+        <% } %>
+        <% if (messages.success && messages.success.length > 0) { %>
+            <div class="alert alertSuccess bg-green-500">
+                <% messages.success.forEach(function(success) { %>
+                    <p><%= success %></p>
+                <% }) %>
+            </div>
+        <% } %>
     </div>
-    <div class="main">
-        <p>Welcome to the abnjain's Chess Game</p>
-        <div class="roleName"><span><%= userName %> </span><p> as a Spectator</p></div>
-        <div class="chessBoard"></div>
+    <div class="gameBoard">
+        <div class="logout">
+            <% if(userName) { %>
+            <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+                </form>
+            <% } else { %>
+            <form action="/" method="GET">
+                <button type="submit">Go Back</button>
+                </form>
+            <% }  %>
+        </div>
+        <div class="main">
+            <p>Welcome to abnjain's Chess Game</p>
+            <div class="roleName"><span><%= userName ? userName : "Guest" %></span><p> as a Spectator</p></div>
+            <div class="chessBoard"></div>
+            <!-- <div class="roleName"><span><%= userName ? userName : "Guest" %></span><p> as a Spectator</p></div> -->
+        </div>
     </div>
-
+        
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js" integrity="sha512-xRllwz2gdZciIB+AkEbeq+gVhX8VB8XsfqeFbUh+SzHlN96dEduwtTuVuc2u9EROlmW9+yhRlxjif66ORpsgVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/scripts/game.js"></script>
