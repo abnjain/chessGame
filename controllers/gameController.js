@@ -47,6 +47,11 @@ module.exports = {
                         currentPlayer = chess.turn();
                         io.emit("move", move);
                         io.emit("boardState", chess.fen());
+
+                        if (chess.isGameOver()) {
+                            const result = chess.isCheckmate() ? "Checkmate" : "Draw";
+                            io.emit("gameEnd", result, currentPlayer);
+                        }
                     } else {
                         dbgr("Invalid Move", move);
                         uniqueSocket.emit("invalidMove", move);
@@ -55,6 +60,11 @@ module.exports = {
                     console.log(error);
                     uniqueSocket.emit("Invalid Move :", move);
                 }
+            });
+            uniqueSocket.on("replayGame", () => {
+                chess.reset();
+                io.emit("boardState", chess.fen());
+                dbgr("Game has been reset");
             });
         });
     }

@@ -139,3 +139,80 @@ p{
 .flipped .piece {
     transform: rotate(180deg);
 }
+
+.gameEndMessage {
+    position: absolute;
+    text-align: center;
+    gap: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f0d9b5;
+    width: 30%;
+    height: 20%;
+    border-radius: 0.5rem;
+    border: 1px solid black;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.9);
+    opacity: 0; /* Ensure it's initially hidden */
+    animation: fadeInScale 0.2s forwards;
+}
+
+.gameEndMessage .message {
+    position: absolute;
+    color: #000;
+    left: 50%;
+    top: 20%;
+    width: 100%;
+    font-size: xx-large;
+    transform: translate(-50%, -50%);;
+}
+.gameEndMessage .buttons {
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: small;
+    border: none;
+    cursor: pointer;
+}
+.goBack{
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    font-size: small;
+    border: none;
+    cursor: pointer;
+    background-color: #b58863;
+}
+.goBack:hover {
+    scale: 105%;
+}
+.replayButton {
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    font-size: small;
+    border: none;
+    cursor: pointer;
+    background-color: #b58863;
+}
+.replayButton:hover {
+    scale: 105%;
+}
+
+.lossMessage {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}

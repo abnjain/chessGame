@@ -127,6 +127,29 @@ socket.on("move", (move) => {
     renderBoard();
 });
 
+const gameEndMessage = document.querySelector(".gameEndMessage");
+const messageElement = document.querySelector(".gameEndMessage .message");
+const lossMessageElement = document.querySelector(".gameEndMessage .lossMessage");
+const replayButton = document.querySelector(".replayButton");
+
+socket.on("gameEnd", (result, currentPlayer) => {
+    messageElement.innerText = `Game Over: ${result}`;
+    if (result === "Checkmate" && currentPlayer==="w") {
+        lossMessageElement.innerText = `White lost`;
+    }
+    if (result === "Checkmate" && currentPlayer==="b") {
+        lossMessageElement.innerText = `Black lost`;
+    }
+    gameEndMessage.style.display = "block";
+});
+
+replayButton.addEventListener("click", () => {
+    socket.emit("replayGame");
+    gameEndMessage.style.display = "none";
+    chess.reset();
+    renderBoard();
+});
+
 renderBoard();
 
 // Remove flash messages after 10 seconds

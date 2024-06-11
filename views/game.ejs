@@ -41,6 +41,15 @@
             <p>Welcome to abnjain's Chess Game</p>
             <div class="roleName"><span><%= userName ? userName : "Guest" %></span><p> as a Spectator</p></div>
             <div class="chessBoard"></div>
+            <!-- <div class="gameEndMessage"> -->
+            <div class="gameEndMessage" style="display: none;">
+                <p class="message"></p>
+                <p class="lossMessage"></p>
+                <div class="buttons">
+                    <button class="replayButton">Play Again</button>
+                    <button class="goBack">Go Back</button>
+                </div>
+            </div>
             <!-- <div class="roleName"><span><%= userName ? userName : "Guest" %></span><p> as a Spectator</p></div> -->
         </div>
     </div>
