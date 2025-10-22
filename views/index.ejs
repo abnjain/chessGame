@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHESS Game</title>
-    <link rel="icon" href="/images/Untitled_design-removebg-preview(1).png" type="image/x-icon">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- <link href="/styles/styles.css" rel="stylesheet" type="text/tailwindcss"> -->
 </head>
+
 <body class="bg-black text-white h-screen overflow-hidden">
     <div class="flashMessage flex justify-center items-center z-50">
-        <% if (messages.error && messages.error.length > 0) { %>
+        <% if (messages.error && messages.error.length> 0) { %>
             <div class="absolute alert alertDanger bg-red-500 text-white p-2 rounded-xl mb-4 text-center w-96 mt-10">
                 <% messages.error.forEach(function(error) { %>
-                    <p><%= error %></p>
-                <% }) %>
+                    <p>
+                        <%= error %>
+                    </p>
+                    <% }) %>
             </div>
-        <% } %>
-        <% if (messages.success && messages.success.length > 0) { %>
-            <div class="absolute alert alertSuccess bg-green-500 text-white p-2 rounded-xl mb-4 text-center w-96 mt-10">
-                <% messages.success.forEach(function(success) { %>
-                    <p><%= success %></p>
-                <% }) %>
-            </div>
-        <% } %>
+            <% } %>
+                <% if (messages.success && messages.success.length> 0) { %>
+                    <div
+                        class="absolute alert alertSuccess bg-green-500 text-white p-2 rounded-xl mb-4 text-center w-96 mt-10">
+                        <% messages.success.forEach(function(success) { %>
+                            <p>
+                                <%= success %>
+                            </p>
+                            <% }) %>
+                    </div>
+                    <% } %>
     </div>
     <h1 class="text-5xl font-bold mt-16 text-center">Abnjain's Chess Game</h1>
     <div class="flex justify-center items-center">
@@ -31,13 +38,17 @@
     </div>
     <div class="flex items-center justify-center gap-6">
         <div class="text-center">
-            <a href="/register" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</a>
+            <a href="/register"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</a>
         </div>
         <div class="text-center">
-            <a href="/login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</a>
+            <a href="/login"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</a>
         </div>
         <div class="text-center">
-            <a href="/game" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Start Game</a>
+            <a href="/game"
+                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Start
+                Game</a>
         </div>
     </div>
     <script>
@@ -56,4 +67,5 @@
         }, 10000);
     </script>
 </body>
+
 </html>

@@ -40,8 +40,9 @@ html, body {
 }
 
 .gameBoard {
-    display: grid;
-    gap: 8vh;
+    display: flex;
+    flex-direction: wrap;
+    justify-content: space-around;
 }
 
 .logout button {
@@ -51,13 +52,14 @@ html, body {
     color: white;
     font-size: x-large;
     margin-top: 6vh;
-    margin-left: 32vw;
+    /* margin-left: 12vw; */
     padding: 0.6rem;
 }
 .logout button:hover{
     text-decoration: underline;
-    text-transform: uppercase;
-    scale: 110%;
+    cursor: pointer;
+    /* text-transform: uppercase; */
+    /* scale: 110%; */
 }
 
 .main{
@@ -65,8 +67,8 @@ html, body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: -3vh;
-    gap: 5vh;
+    margin-top: 13vh;
+    /* gap: 5vh; */
 }
 
 p{
@@ -92,10 +94,53 @@ p{
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     grid-template-rows: repeat(8, minmax(0, 1fr));
-    width: 400px;
-    height: 400px;
+    width: 480px;
+    height: 480px;
     transform: rotate(0deg);
     margin: -20px;
+}
+
+.moveHistory {
+    /* position: absolute; */
+    margin-top: 10vh;
+    width: 400px;
+    height: 600px;
+    background-color: rgba(53, 53, 53, 0.717);
+    border-radius: 8%;
+    padding: 2.5vw;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    padding: 2.5vw;
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+}
+.moveList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.moveList li {
+    padding: 2px 5px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.logMoves {
+    /* display: flex; */
+    width: 400px;
+    height: 600px;
+    background-color: rgba(53, 53, 53, 0.717);
+    border-radius: 8%;
+    margin-top: 10vh;
+    padding: 2.5vw;
+    overflow: hidden;
+}
+.wMoves {
+    color: #f0d9b5;
+}
+.bMoves {
+    color: #b58863;
 }
 
 .piece.white {
@@ -124,7 +169,7 @@ p{
 }
 
 .piece {
-    font-size: 36px;
+    font-size: 55px;
     cursor: pointer;
 }
 

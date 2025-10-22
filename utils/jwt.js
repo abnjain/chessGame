@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/development.json")
+const config = require("../config/development")
 
 const generateAccessToken = (user) => {
     return jwt.sign({ email: user.email, id: user._id }, config.JWT_SECRET, { expiresIn: "15m" });

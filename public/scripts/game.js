@@ -131,6 +131,7 @@ const gameEndMessage = document.querySelector(".gameEndMessage");
 const messageElement = document.querySelector(".gameEndMessage .message");
 const lossMessageElement = document.querySelector(".gameEndMessage .lossMessage");
 const replayButton = document.querySelector(".replayButton");
+const goBack = document.querySelector(".goBack");
 
 socket.on("gameEnd", (result, currentPlayer) => {
     messageElement.innerText = `Game Over: ${result}`;
@@ -148,6 +149,10 @@ replayButton.addEventListener("click", () => {
     gameEndMessage.style.display = "none";
     chess.reset();
     renderBoard();
+});
+
+goBack.addEventListener("click", () => {
+    window.location.href = "/game";
 });
 
 renderBoard();
